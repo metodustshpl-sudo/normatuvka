@@ -1,0 +1,219 @@
+
+<h2 class="sr-only">Інтерактивний довідник нормативно-правової бази закладів професійної освіти України — 2025/2026</h2>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.hdr{padding:1.25rem 0 .875rem;border-bottom:.5px solid var(--color-border-tertiary);margin-bottom:1.25rem}
+.hdr-t{font-size:19px;font-weight:500;color:var(--color-text-primary);margin-bottom:3px;display:flex;align-items:center;gap:8px}
+.hdr-s{font-size:13px;color:var(--color-text-secondary)}
+.new-badge{font-size:10px;font-weight:500;padding:2px 7px;border-radius:var(--border-radius-md);background:#E1F5EE;color:#0F6E56;letter-spacing:.02em}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:1.25rem}
+.sc{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 14px;text-align:center}
+.sc-n{font-size:22px;font-weight:500;color:var(--color-text-primary)}
+.sc-l{font-size:11px;color:var(--color-text-secondary);margin-top:2px}
+.srch{position:relative;margin-bottom:1rem}
+.srch i{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:16px;color:var(--color-text-tertiary)}
+.srch input{padding-left:36px;font-size:14px;width:100%}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:1.25rem}
+.tb{font-size:12px;padding:5px 12px;border-radius:var(--border-radius-md);border:.5px solid var(--color-border-secondary);background:transparent;color:var(--color-text-secondary);cursor:pointer;display:flex;align-items:center;gap:5px;font-family:var(--font-sans);transition:all .15s}
+.tb:hover{background:var(--color-background-secondary);color:var(--color-text-primary)}
+.tb.active{background:#E6F1FB;color:#0C447C;border-color:#85B7EB;font-weight:500}
+.list{display:flex;flex-direction:column;gap:9px}
+.card{background:var(--color-background-primary);border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:.875rem 1.125rem;cursor:pointer;transition:border-color .15s,background .15s}
+.card:hover{border-color:var(--color-border-primary);background:var(--color-background-secondary)}
+.card.open{border-color:#85B7EB}
+.card.new-law{border-left:2px solid #1D9E75}
+.ch{display:flex;align-items:flex-start;gap:11px}
+.ci{width:34px;height:34px;border-radius:var(--border-radius-md);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:17px}
+.ci.law{background:#E6F1FB;color:#185FA5}
+.ci.decree{background:#E1F5EE;color:#0F6E56}
+.ci.order{background:#FAECE7;color:#993C1D}
+.ci.regulation{background:#FAEEDA;color:#854F0B}
+.ci.concept{background:#EEEDFE;color:#534AB7}
+.ci.standard{background:#EAF3DE;color:#3B6D11}
+.cm{flex:1;min-width:0}
+.cn{font-size:13.5px;font-weight:500;color:var(--color-text-primary);line-height:1.4;margin-bottom:5px}
+.badges{display:flex;gap:5px;flex-wrap:wrap}
+.b{font-size:10px;padding:2px 7px;border-radius:var(--border-radius-md);font-weight:500}
+.b-law{background:#E6F1FB;color:#185FA5}
+.b-decree{background:#E1F5EE;color:#0F6E56}
+.b-order{background:#FAECE7;color:#993C1D}
+.b-reg{background:#FAEEDA;color:#854F0B}
+.b-concept{background:#EEEDFE;color:#534AB7}
+.b-standard{background:#EAF3DE;color:#3B6D11}
+.b-year{background:var(--color-background-secondary);color:var(--color-text-secondary)}
+.b-new{background:#E1F5EE;color:#085041;font-weight:600}
+.chevron{color:var(--color-text-tertiary);font-size:17px;transition:transform .2s;flex-shrink:0;margin-top:1px}
+.card.open .chevron{transform:rotate(180deg)}
+.body{display:none;margin-top:11px;padding-top:11px;border-top:.5px solid var(--color-border-tertiary)}
+.card.open .body{display:block}
+.desc{font-size:13px;color:var(--color-text-secondary);line-height:1.6;margin-bottom:9px}
+.arts{margin:9px 0;padding:9px 11px;background:var(--color-background-secondary);border-radius:var(--border-radius-md);border-left:2px solid #85B7EB}
+.arts-t{font-size:11px;font-weight:500;color:var(--color-text-secondary);margin-bottom:5px}
+.arts ul{list-style:none}
+.arts li{font-size:12.5px;color:var(--color-text-primary);padding:2px 0}
+.arts li::before{content:"—";margin-right:6px;color:var(--color-text-tertiary)}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.doc-btn{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:#185FA5;text-decoration:none;padding:6px 12px;border-radius:var(--border-radius-md);border:.5px solid #85B7EB;background:transparent;font-family:var(--font-sans);cursor:pointer;transition:background .15s}
+.doc-btn:hover{background:#E6F1FB}
+.doc-btn.primary{background:#E6F1FB;font-weight:500}
+.empty{text-align:center;padding:2rem;color:var(--color-text-secondary);font-size:14px}
+</style>
+
+<div class="hdr">
+  <div class="hdr-t">
+    <i class="ti ti-scale" aria-hidden="true"></i>
+    Нормативно-правова база ЗПО
+    <span class="new-badge">2025/2026</span>
+  </div>
+  <div class="hdr-s">Шепетівський професійний ліцей · Віртуальний методичний кабінет</div>
+</div>
+
+<div class="stats" id="sR"></div>
+<div class="srch"><i class="ti ti-search" aria-hidden="true"></i><input type="text" id="si" placeholder="Пошук документа..." oninput="flt()"></div>
+<div class="tabs" id="tC"></div>
+<div class="list" id="dL"></div>
+
+<script>
+const docs=[
+  {id:1,cat:"law",name:'Закон України «Про освіту» від 05.09.2017 № 2145-VIII',year:"2017",badge:"Закон",ci:"law",bc:"b-law",isNew:false,
+   link:"https://zakon.rada.gov.ua/laws/show/2145-19#Text",
+   desc:"Основоположний закон, що визначає засади державної політики у сфері освіти, права й обов'язки учасників освітнього процесу, систему освіти України загалом.",
+   arts:["Право на освіту та академічна свобода","Якість освіти та система забезпечення якості","Педагогічні та науково-педагогічні працівники","Автономія закладу освіти","Освітній процес та форми навчання","Академічна доброчесність"]},
+  {id:2,cat:"law",name:'Закон України «Про професійну освіту» від 21.08.2025 № 4574-IX (набрав чинності 12.09.2025)',year:"2025",badge:"Закон",ci:"law",bc:"b-law",isNew:true,
+   link:"https://zakon.rada.gov.ua/laws/show/4574-20#Text",
+   desc:"Новий стратегічний закон, що визначає сучасні правові, організаційні та фінансові засади функціонування і розвитку системи ПО. Передбачає створення професійних коледжів, фінансову автономію, дуальну освіту, незалежні кваліфікаційні центри та гнучкі освітні траєкторії.",
+   arts:["Професійні коледжі як основні заклади ПО","Фінансова автономія: без тарифної сітки та типового штатного розпису","Незалежні кваліфікаційні центри для оцінювання","Дуальна та гнучка форми здобуття освіти","Наглядові ради з представниками роботодавців","Визнання неформального навчання","Підтримка дорослих, які змінюють професію"]},
+  {id:3,cat:"law",name:'Закон України «Про повну загальну середню освіту» від 16.01.2020 № 463-IX',year:"2020",badge:"Закон",ci:"law",bc:"b-law",isNew:false,
+   link:"https://zakon.rada.gov.ua/laws/show/463-20#Text",
+   desc:"Регулює загальноосвітній компонент у ЗПО: умови здобуття повної загальної середньої освіти паралельно з професійною підготовкою.",
+   arts:["Здобуття ПЗСО у закладах ПТО","Вимоги до педагогічних працівників","Організація освітнього процесу в умовах воєнного стану"]},
+  {id:4,cat:"decree",name:'Постанова КМУ «Про затвердження переліку посад педагогічних та науково-педагогічних працівників» від 14.06.2000 № 963',year:"2000",badge:"Постанова КМУ",ci:"decree",bc:"b-decree",isNew:false,
+   link:"https://zakon.rada.gov.ua/laws/show/963-2000-п#o14",
+   desc:"Встановлює перелік посад педагогічних працівників, що мають право на пільги, передбачені законодавством.",
+   arts:["Перелік педагогічних посад у ЗПО","Науково-педагогічні посади","Порядок присвоєння статусу педагогічного працівника"]},
+  {id:5,cat:"decree",name:'Постанова КМУ «Деякі питання підвищення кваліфікації педагогічних працівників» від 21.08.2019 № 800',year:"2019",badge:"Постанова КМУ",ci:"decree",bc:"b-decree",isNew:false,
+   link:"https://zakon.rada.gov.ua/laws/show/800-2019-%D0%BF#Text",
+   desc:"Регулює порядок, форми, обсяг та умови підвищення кваліфікації педагогічних працівників. Гарантує право вибору місця та форми ПК.",
+   arts:["Обсяг ПК — 150 год на 5 років","Форми підвищення кваліфікації (очна, дистанційна, змішана, неформальна)","Суб'єкти підвищення кваліфікації","Планування та фінансування за принципом «гроші за людиною»"]},
+  {id:6,cat:"decree",name:'Порядок організації інклюзивного навчання у закладах ПТО (Постанова КМУ від 11.09.2019 № 636)',year:"2019",badge:"Постанова КМУ",ci:"decree",bc:"b-decree",isNew:false,
+   link:"https://zakon.rada.gov.ua/laws/show/636-2019-%D0%BF#Text",
+   desc:"Встановлює порядок організації інклюзивного навчання осіб з ООП у закладах ПТО, забезпечення розумного пристосування та підтримки.",
+   arts:["Права осіб з ООП у закладах ПТО","Індивідуальна програма розвитку","Асистент педагога та тьютор","Архітектурна та інформаційна доступність"]},
+  {id:7,cat:"regulation",name:'Положення про методичну роботу в ПТНЗ (Наказ МОН від 12.12.2000 № 582)',year:"2000",badge:"Положення",ci:"regulation",bc:"b-reg",isNew:false,
+   link:"http://osvita.ua/legislation/proftech/3306/",
+   desc:"Регулює організацію методичної роботи у закладах профтехосвіти: планування, форми проведення, обов'язки методиста, робота методичних комісій.",
+   arts:["Мета та завдання методичної роботи","Методичні комісії та їх організація","Форми підвищення кваліфікації педагогів","Методичний кабінет: функції та вимоги","Звітність та документація"]},
+  {id:8,cat:"order",name:'Положення про порядок здійснення інноваційної освітньої діяльності (Наказ МОН від 07.11.2000 № 522)',year:"2000",badge:"Наказ МОН",ci:"order",bc:"b-order",isNew:false,
+   link:"https://zakon.rada.gov.ua/laws/show/z0946-00#Text",
+   desc:"Визначає порядок впровадження інноваційних освітніх технологій та умови проведення педагогічних експериментів у закладах освіти.",
+   arts:["Поняття інноваційної діяльності в освіті","Порядок апробації освітніх інновацій","Педагогічний експеримент: умови та етапи","Звітність за результатами інноваційної діяльності"]},
+  {id:9,cat:"order",name:'Положення про атестацію педагогічних працівників (Наказ МОН від 09.09.2022 № 1135)',year:"2022",badge:"Наказ МОН",ci:"order",bc:"b-order",isNew:false,
+   link:"https://zakon.rada.gov.ua/laws/show/z1229-22#Text",
+   desc:"Визначає порядок атестації педагогічних працівників, умови присвоєння кваліфікаційних категорій та педагогічних звань.",
+   arts:["Кваліфікаційні категорії педагогічних працівників","Порядок проведення атестації (комісія, строки, процедура)","Педагогічні звання: «старший вчитель», «вчитель-методист»","Право на позачергову атестацію"]},
+  {id:10,cat:"order",name:'Положення про дуальну форму здобуття ПТО (Наказ МОН від 12.12.2019 № 1551)',year:"2019",badge:"Наказ МОН",ci:"order",bc:"b-order",isNew:false,
+   link:"https://zakon.rada.gov.ua/laws/show/z0090-20#Text",
+   desc:"Визначає порядок організації дуальної форми навчання у ЗПО, де теоретична підготовка поєднується з практичним навчанням безпосередньо на виробництві.",
+   arts:["Поняття та принципи дуальної освіти","Договір між закладом, здобувачем і роботодавцем","Організація виробничого навчання на підприємстві","Оплата праці здобувача під час практики"]},
+  {id:11,cat:"concept",name:'Концепція розвитку професійної освіти в Україні до 2027 року (Розпорядження КМУ від 12.08.2022 № 195-р)',year:"2022",badge:"Концепція",ci:"concept",bc:"b-concept",isNew:false,
+   link:"https://zakon.rada.gov.ua/laws/show/195-2023-%D1%80#Text",
+   desc:"Стратегічний документ, що визначає пріоритети та завдання реформування ПТО з урахуванням потреб ринку праці, відновлення країни та інтеграції до ЄС.",
+   arts:["Актуальні проблеми системи ПТО","Мета та принципи реформування","Дуальна освіта та партнерство з роботодавцями","Цифровізація освітнього процесу","Прогнозні результати до 2027 р."]},
+  {id:12,cat:"standard",name:'Державні стандарти ПО на модульно-компетентнісній основі (МОН, 2024–2025)',year:"2025",badge:"Стандарти",ci:"standard",bc:"b-standard",isNew:true,
+   link:"https://mon.gov.ua/osvita-2/profesiyno-tekhnichna-osvita/reforma-profesiynoi-osviti/zmist-profesiynoi-osviti-osvitni-standarti-programi-informatsiya-dlya-uchniv-ta-pedagogiv/osvitni-standarti-navchalni-plani-ta-programi",
+   desc:"МОН затверджує та оновлює стандарти з конкретних робітничих професій на модульно-компетентнісній основі. Включають стандарти 2024 та 2025 років для різних галузей.",
+   arts:["Модульно-компетентнісний підхід","Результати навчання та компетентності","Стандарти 2024: нові професії відновлювальної енергетики","Стандарти 2025: будівництво, сервіс, IT-підтримка","Зв'язок з Національною рамкою кваліфікацій"]},
+  {id:13,cat:"order",name:'Типова програма підвищення кваліфікації «Плекання резилієнтності в закладі освіти» (Наказ МОН від 25.07.2023 № 889)',year:"2023",badge:"Наказ МОН",ci:"order",bc:"b-order",isNew:false,
+   link:"https://zakon.rada.gov.ua/laws/show/z1347-23#Text",
+   desc:"Типова програма для підвищення кваліфікації педагогічних працівників ЗПО, спрямована на формування стресостійкості й психологічної підтримки в умовах воєнного часу.",
+   arts:["Поняття резилієнтності в освіті","Психологічна безпека освітнього середовища","Практичні інструменти підтримки здобувачів","Самодопомога педагогічного працівника"]}
+];
+
+const cats=[
+  {id:"all",label:"Усі",icon:"ti-files"},
+  {id:"law",label:"Закони",icon:"ti-scale"},
+  {id:"decree",label:"Постанови КМУ",icon:"ti-building-arch"},
+  {id:"order",label:"Накази МОН",icon:"ti-clipboard-list"},
+  {id:"regulation",label:"Положення",icon:"ti-book"},
+  {id:"concept",label:"Концепції",icon:"ti-bulb"},
+  {id:"standard",label:"Стандарти",icon:"ti-award"}
+];
+
+let tab="all",q="";
+
+function renderStats(){
+  const el=document.getElementById("sR");
+  const c={law:0,decree:0,order:0,regulation:0,concept:0,standard:0};
+  docs.forEach(d=>{if(c[d.cat]!==undefined)c[d.cat]++;});
+  el.innerHTML=`
+    <div class="sc"><div class="sc-n">${docs.length}</div><div class="sc-l">Усього документів</div></div>
+    <div class="sc"><div class="sc-n">${c.law}</div><div class="sc-l">Законів</div></div>
+    <div class="sc"><div class="sc-n">${c.decree}</div><div class="sc-l">Постанов КМУ</div></div>
+    <div class="sc"><div class="sc-n">${c.order+c.regulation}</div><div class="sc-l">Наказів та положень</div></div>
+    <div class="sc"><div class="sc-n">${c.concept+c.standard}</div><div class="sc-l">Концепцій та стандартів</div></div>
+  `;
+}
+
+function renderTabs(){
+  document.getElementById("tC").innerHTML=cats.map(c=>`
+    <button class="tb${tab===c.id?' active':''}" onclick="setTab('${c.id}')">
+      <i class="ti ${c.icon}" aria-hidden="true"></i>${c.label}
+    </button>`).join("");
+}
+
+function setTab(id){tab=id;renderTabs();renderDocs();}
+function flt(){q=document.getElementById("si").value.toLowerCase();renderDocs();}
+
+function toggle(id){
+  document.getElementById("c"+id).classList.toggle("open");
+}
+
+function openLink(url,e){
+  e.stopPropagation();
+  window.open(url,"_blank");
+}
+
+function renderDocs(){
+  const el=document.getElementById("dL");
+  const f=docs.filter(d=>{
+    const mc=tab==="all"||d.cat===tab;
+    const mq=!q||d.name.toLowerCase().includes(q)||d.desc.toLowerCase().includes(q);
+    return mc&&mq;
+  });
+  if(!f.length){
+    el.innerHTML='<div class="empty"><i class="ti ti-search-off" style="font-size:22px;display:block;margin-bottom:8px"></i>Документів не знайдено</div>';
+    return;
+  }
+  el.innerHTML=f.map(d=>`
+    <div class="card${d.isNew?' new-law':''}" id="c${d.id}" onclick="toggle(${d.id})">
+      <div class="ch">
+        <div class="ci ${d.ci}"><i class="ti ti-file-text" aria-hidden="true"></i></div>
+        <div class="cm">
+          <div class="cn">${d.name}</div>
+          <div class="badges">
+            <span class="b ${d.bc}">${d.badge}</span>
+            <span class="b b-year">${d.year}</span>
+            ${d.isNew?'<span class="b b-new">Новий</span>':''}
+          </div>
+        </div>
+        <i class="ti ti-chevron-down chevron" aria-hidden="true"></i>
+      </div>
+      <div class="body">
+        <p class="desc">${d.desc}</p>
+        <div class="arts">
+          <div class="arts-t"><i class="ti ti-list" style="font-size:12px;vertical-align:-1px;margin-right:4px"></i>Ключові положення</div>
+          <ul>${d.arts.map(a=>`<li>${a}</li>`).join("")}</ul>
+        </div>
+        <div class="btn-row">
+          <a class="doc-btn primary" href="${d.link}" target="_blank" onclick="event.stopPropagation()">
+            <i class="ti ti-external-link" aria-hidden="true"></i>Відкрити документ
+          </a>
+          ${d.id===2?`<a class="doc-btn" href="https://mon.gov.ua/news/nabrav-chynnosti-novyi-zakon-pro-profesiinu-osvitu-poetapni-zminy-dlia-bezpechnoho-perekhodu-do-novoi-systemy" target="_blank" onclick="event.stopPropagation()"><i class="ti ti-news" aria-hidden="true"></i>Роз'яснення МОН</a>`:''}
+        </div>
+      </div>
+    </div>
+  `).join("");
+}
+
+renderStats();renderTabs();renderDocs();
+</script>
